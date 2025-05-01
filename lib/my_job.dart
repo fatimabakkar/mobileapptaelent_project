@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
 import 'profile.dart';
-import 'news-detail.dart';
-
+import 'news_feed.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -241,7 +240,7 @@ class _MyJobPageState extends State<MyJobPage> with TickerProviderStateMixin {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                icon: const Icon(Icons.home, size: 34, color: Color(0xFF75A488)),
+                icon: const Icon(Icons.home, size: 34, color: Colors.white),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -261,7 +260,10 @@ class _MyJobPageState extends State<MyJobPage> with TickerProviderStateMixin {
               IconButton(
                 icon: const Icon(Icons.feed, size: 33, color: Colors.white),
                 onPressed: () {
-
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NewsFeedPage()),
+                  );
                 },
               ),
               IconButton(

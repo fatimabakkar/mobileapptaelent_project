@@ -167,10 +167,12 @@ class NewsFeedPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                icon: const Icon(Icons.home, size: 34, color: Color(0xFF75A488)),
+                icon: const Icon(Icons.home, size: 34,color: Colors.white ),
                 onPressed: () {
-                  // Stay on home page
-                },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home()),
+                  );                },
               ),
               IconButton(
                 icon: const Icon(Icons.work, size: 33, color: Colors.white),

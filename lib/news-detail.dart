@@ -49,54 +49,7 @@ class NewsDetailPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.deepPurple,
-        shape: CircularNotchedRectangle(),
-        notchMargin: 8.0,
-        child: Container(
-          height: 60,
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.home, size: 34, color: Color(0xFF75A488)),
-                onPressed: () {
-                  // Stay on home page
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.work, size: 33, color: Colors.white),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyJobPage()),
-                  );
-                },
-              ),
-              SizedBox(width: 40),
-              IconButton(
-                icon: const Icon(Icons.feed, size: 33, color: Colors.white),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyJobPage()),
-                  );
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.person, size: 33, color: Colors.white),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ProfilePage()),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'my_job.dart';  // Example import for other pages
+import 'home.dart';
+import 'news_feed.dart';
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -38,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF6F7FB), // Background color consistent with the app
+      backgroundColor: Color(0xFFF6F7FB),
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
         elevation: 2,
@@ -155,6 +157,56 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.deepPurple,
+        shape: CircularNotchedRectangle(),
+        notchMargin: 8.0,
+        child: Container(
+          height: 60,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.home, size: 34, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>Home()),
+                  );                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.work, size: 33, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyJobPage()),
+                  );
+                },
+              ),
+              SizedBox(width: 40),
+              IconButton(
+                icon: const Icon(Icons.feed, size: 33, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NewsFeedPage()),
+                  );
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.person, size: 33, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()),
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),

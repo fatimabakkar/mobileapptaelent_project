@@ -195,7 +195,7 @@ class _HomePageState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                icon: const Icon(Icons.home, size: 34, color: Color(0xFF75A488)),
+                icon: const Icon(Icons.home, size: 34, color: Colors.white),
                 onPressed: () {
                 },
               ),
