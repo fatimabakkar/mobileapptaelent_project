@@ -1,95 +1,223 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
-class RegisterPage extends StatefulWidget {
-  @override
-  _RegisterPageState createState() => _RegisterPageState();
+import 'home.dart';
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: RegistrationPage(),
+  ));
 }
 
-class _RegisterPageState extends State<RegisterPage> with TickerProviderStateMixin {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  late AnimationController _controller;
-  late Animation<Offset> _slideAnimation;
-  late Animation<double> _fadeAnimation;
-
+class RegistrationPage extends StatefulWidget {
   @override
-  void initState() {
-    super.initState();
+  _RegistrationPageState createState() => _RegistrationPageState();
+}
 
-    // Slide animation
-    _controller = AnimationController(
-      duration: Duration(milliseconds: 600),
-      vsync: this,
-    );
-    _slideAnimation = Tween<Offset>(
-      begin: Offset(0.0, 1.0), // Start off the screen
-      end: Offset(0.0, 0.0), // End at the center
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+class _RegistrationPageState extends State<RegistrationPage> {
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _aboutMeController = TextEditingController();
+  final TextEditingController _educationController = TextEditingController();
+  final TextEditingController _UniverstyController = TextEditingController();
+  final TextEditingController _pass = TextEditingController();
+  final TextEditingController _passconf = TextEditingController();
 
-    // Fade animation
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
-    );
-
-    _controller.forward(); // Start the animation when the page loads
-  }
-
-  // Register User (without backend logic)
-  void _registerUser() {
-    String email = _emailController.text;
-    String password = _passwordController.text;
-
-    if (email.isEmpty || password.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Please fill in both fields'),
-      ));
-    } else {
-      // On successful registration, navigate to the home page
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => StarLinkApp()),
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    _controller.dispose();
-    super.dispose();
-  }
+  String _selectedGender = 'Male';
+  DateTime _selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Register')),
-      body: SlideTransition(
-        position: _slideAnimation,
-        child: FadeTransition(
-          opacity: _fadeAnimation,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                TextField(
-                  controller: _emailController,
-                  decoration: InputDecoration(labelText: 'Email'),
-                ),
-                TextField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(labelText: 'Password'),
-                ),
-                ElevatedButton(
-                  onPressed: _registerUser,
-                  child: Text('Register'),
-                ),
-              ],
-            ),
+      backgroundColor: Color(0xFFF6F7FB), // Light background color
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple, // Dark purple app bar
+        elevation: 2,
+        title: Text(
+          'My Information',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
           ),
         ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            // First Name
+            TextField(
+              controller: _firstNameController,
+              decoration: InputDecoration(
+                labelText: 'First Name',
+                labelStyle: TextStyle(color: Colors.black),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              ),
+            ),
+            SizedBox(height: 16),
+
+            // Last Name
+            TextField(
+              controller: _lastNameController,
+              decoration: InputDecoration(
+                labelText: 'Last Name',
+                labelStyle: TextStyle(color: Colors.black),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              ),
+            ),
+            SizedBox(height: 16),
+
+            // Email
+            TextField(
+              controller: _emailController,
+              decoration: InputDecoration(
+                labelText: 'Email',
+                labelStyle: TextStyle(color: Colors.black),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              ),
+            ),
+            SizedBox(height: 16),
+            TextField(
+              controller: _pass,
+              decoration: InputDecoration(
+                labelText: 'password ',
+                labelStyle: TextStyle(color: Colors.black),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              ),
+            ),
+            SizedBox(height: 16),
+            TextField(
+              controller: _passconf,
+              decoration: InputDecoration(
+                labelText: 'password confirmation ',
+                labelStyle: TextStyle(color: Colors.black),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              ),
+            ),
+            SizedBox(height: 16),
+            // About Me
+            TextField(
+              controller: _aboutMeController,
+              maxLines: 3,
+              decoration: InputDecoration(
+                labelText: 'About Me',
+                labelStyle: TextStyle(color: Colors.black),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              ),
+            ),
+            SizedBox(height: 16),
+
+            // Gender
+            DropdownButtonFormField<String>(
+              value: _selectedGender,
+              onChanged: (newValue) {
+                setState(() {
+                  _selectedGender = newValue!;
+                });
+              },
+              items: ['Male', 'Female', 'Other']
+                  .map((gender) => DropdownMenuItem<String>(
+                value: gender,
+                child: Text(gender),
+              ))
+                  .toList(),
+              decoration: InputDecoration(
+                labelText: 'Gender',
+                labelStyle: TextStyle(color: Colors.black),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              ),
+            ),
+            SizedBox(height: 16),
+            TextField(
+              controller: _educationController,
+              decoration: InputDecoration(
+                labelText: 'Education',
+                labelStyle: TextStyle(color: Colors.black),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              ),
+            ),
+            SizedBox(height: 16),
+            TextField(
+              controller: _UniverstyController,
+              decoration: InputDecoration(
+                labelText: 'Universty',
+                labelStyle: TextStyle(color: Colors.black),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              ),
+            ),
+            SizedBox(height: 16),
+            // Date of Birth
+            GestureDetector(
+              onTap: () async {
+                DateTime? picked = await showDatePicker(
+                  context: context,
+                  initialDate: _selectedDate,
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime.now(),
+                );
+                if (picked != null && picked != _selectedDate) {
+                  setState(() {
+                    _selectedDate = picked;
+                  });
+                }
+              },
+              child: AbsorbPointer(
+                child: TextField(
+                  controller: TextEditingController(text: '${_selectedDate.toLocal()}'.split(' ')[0]),
+                  decoration: InputDecoration(
+                    labelText: 'Date of Birth',
+                    labelStyle: TextStyle(color: Colors.black),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                    contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+
+            // Save Changes Button
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home()),
+                  );                  print('Changes saved');
+                },
+                style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepPurple, // Dark purple button
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: Text(
+                  'Save Changes',
+                  style: TextStyle(fontSize: 18,color: Colors.white),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+          ],
+        ),
+      ),
+
     );
   }
 }

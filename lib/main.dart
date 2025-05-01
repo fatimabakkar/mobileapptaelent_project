@@ -22,7 +22,7 @@ class StarLinkApp extends StatelessWidget {
       routes: {
         '/': (context) => SplashScreen(), // Splash screen
         '/login': (context) => LoginPage(), // Login page
-        '/register': (context) => RegisterPage(), // Register page
+        '/register': (context) =>RegistrationPage(), // Register page
         '/main': (context) => MainPage(), // Main page after login
       },
     );
