@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'RegisterPage.dart';
+import 'home.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -120,7 +121,10 @@ class _SignInPageState extends State<LoginPage> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Implement sign in functionality
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.deepPurple,

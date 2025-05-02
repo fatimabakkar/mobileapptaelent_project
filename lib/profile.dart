@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'my_job.dart';  // Example import for other pages
 import 'home.dart';
 import 'news_feed.dart';
+import 'LoginPage.dart';
+import 'size.dart';
+import 'earning.dart';
+import 'upload image.dart';
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -115,10 +119,14 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                         SizedBox(height: 20),
                         // "Edit Your Profile" Section
                         _buildSection(
-                          title: 'Edit Your Profile',
-                          icon: Icons.edit,
+                          title: 'Size and measurments',
+                          icon: Icons.ac_unit_outlined,
                           onPressed: () {
-                            // Navigate to profile edit page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>    SizesAndMeasurementsPage
+                                ()),
+                            );
                           },
                         ),
                         SizedBox(height: 20),
@@ -135,11 +143,24 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
 
                         // Settings Section
                         _buildSection(
-                          title: 'Settings',
-                          icon: Icons.settings,
+                          title: 'Earnings',
+                          icon: Icons.account_balance_wallet,
                           onPressed: () {
-                            // Navigate to settings page
-                          },
+
+                     Navigator.push(
+                                context,
+                      MaterialPageRoute(builder: (context) => EarningsPage()),
+    );
+    },
+                        ),
+                        SizedBox(height: 20),
+
+                        // Settings Section
+                        _buildSection(
+                          title: 'Additional photo',
+                          icon: Icons.photo,
+                          onPressed: () {
+                                                    },
                         ),
                         SizedBox(height: 20),
 
@@ -148,8 +169,10 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                           title: 'Logout',
                           icon: Icons.exit_to_app,
                           onPressed: () {
-                            // Implement logout functionality
-                          },
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginPage()),
+                            );                          },
                         ),
                       ],
                     ),
